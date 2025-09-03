@@ -24,17 +24,17 @@ A modern, responsive event website built for the Data Science Club's upcoming ev
 
 ## Tech Stack
 
-- **Frontend Framework**: [React - specify your choice]
-- **Styling**: [Tailwind CSS]
-- **Build Tool**: [Vite]
+- **Frontend Framework**: React
+- **Styling**: Tailwind CSS
+- **Build Tool**: Vite
 - **Version Control**: Git
-- **Deployment**: [Vercel]
+- **Deployment**: Vercel
 
 ## Installation & Setup
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- npm or yarn package manager
+- npm
 - Git
 
 ### Local Development
@@ -60,7 +60,7 @@ A modern, responsive event website built for the Data Science Club's upcoming ev
    ```
 
 4. **Open browser**
-   Navigate to `http://localhost:3000` to view the website
+   Navigate to `http://localhost:8080` to view the website
 
 ### Build for Production
 
@@ -73,33 +73,103 @@ yarn build
 ## 📁 Project Structure
 
 ```
-data-science-event-website/
-├── public/
-│   ├── images/
-│   ├── favicon.ico
-│   └── index.html
-├── src/
-│   ├── components/
-│   │   ├── Header/
-│   │   ├── Hero/
-│   │   ├── About/
-│   │   ├── Speakers/
-│   │   ├── Schedule/
-│   │   ├── Registration/
-│   │   ├── Venue/
-│   │   └── Footer/
-│   ├── assets/
-│   │   ├── images/
-│   │   └── styles/
-│   ├── utils/
-│   ├── App.js
-│   └── index.js
+DataScienceTask/
+├── .gitignore
+├── bun.lockb
+├── components.json
+├── eslint.config.js
+├── index.html
+├── package-lock.json
 ├── package.json
+├── postcss.config.js
+├── public/
+│   ├── placeholder.svg
+│   └── robots.txt
 ├── README.md
-└── .gitignore
+├── src/
+│   ├── App.css
+│   ├── App.tsx
+│   ├── components/
+│   │   ├── About.tsx
+│   │   ├── CountdownTimer.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── Registration.tsx
+│   │   ├── Schedule.tsx
+│   │   ├── Speakers.tsx
+│   │   ├── ThreeBackground.tsx
+│   │   ├── ui/
+│   │   │   ├── accordion.tsx
+│   │   │   ├── alert-dialog.tsx
+│   │   │   ├── alert.tsx
+│   │   │   ├── aspect-ratio.tsx
+│   │   │   ├── avatar.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── breadcrumb.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── calendar.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── carousel.tsx
+│   │   │   ├── chart.tsx
+│   │   │   ├── checkbox.tsx
+│   │   │   ├── collapsible.tsx
+│   │   │   ├── command.tsx
+│   │   │   ├── context-menu.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── drawer.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── form.tsx
+│   │   │   ├── hover-card.tsx
+│   │   │   ├── input-otp.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── menubar.tsx
+│   │   │   ├── navigation-menu.tsx
+│   │   │   ├── pagination.tsx
+│   │   │   ├── popover.tsx
+│   │   │   ├── progress.tsx
+│   │   │   ├── radio-group.tsx
+│   │   │   ├── resizable.tsx
+│   │   │   ├── scroll-area.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── slider.tsx
+│   │   │   ├── sonner.tsx
+│   │   │   ├── switch.tsx
+│   │   │   ├── table.tsx
+│   │   │   ├── tabs.tsx
+│   │   │   ├── textarea.tsx
+│   │   │   ├── toast.tsx
+│   │   │   ├── toaster.tsx
+│   │   │   ├── toggle-group.tsx
+│   │   │   ├── toggle.tsx
+│   │   │   ├── tooltip.tsx
+│   │   │   └── use-toast.ts
+│   │   └── Venue.tsx
+│   ├── hooks/
+│   │   ├── use-mobile.tsx
+│   │   └── use-toast.ts
+│   ├── index.css
+│   ├── lib/
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages/
+│   │   ├── Index.tsx
+│   │   └── NotFound.tsx
+│   └── vite-env.d.ts
+├── static-event-website.html
+├── tailwind.config.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```
 
-## 🎯 Usage
+## Usage
 
 ### Customization
 
@@ -118,18 +188,18 @@ data-science-event-website/
 - **Registration**: Connect to your registration platform or form handler
 - **Venue**: Update location details, maps, or online platform information
 
-## 🌐 Live Demo
+## Live Demo
 
-[Insert your live website URL here]
+https://data-science-task-virid.vercel.app
 
-## 📱 Responsive Design
+## Responsive Design
 
 The website is fully responsive and optimized for:
 - Desktop (1200px+)
 - Tablet (768px - 1199px)
 - Mobile (320px - 767px)
 
-## ✨ Interactive Features
+## Interactive Features
 
 - **Smooth Scrolling**: Navigate seamlessly between sections
 - **Hover Effects**: Interactive buttons and cards
@@ -137,47 +207,3 @@ The website is fully responsive and optimized for:
 - **Countdown Timer**: Dynamic countdown to event date
 - **Collapsible Content**: Expandable schedule and FAQ sections
 - **Form Validation**: Client-side validation for registration forms
-
-## 🤝 Contributing
-
-We welcome contributions to improve the website! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Commit your changes (`git commit -m 'Add amazing feature'`)
-5. Push to the branch (`git push origin feature/amazing-feature`)
-6. Open a Pull Request
-
-## 📋 Future Enhancements
-
-- [ ] Integration with event management platforms
-- [ ] Email notification system
-- [ ] Live chat support
-- [ ] Multi-language support
-- [ ] Dark/light theme toggle
-- [ ] SEO optimization
-- [ ] Analytics integration
-
-## 📞 Contact & Support
-
-- **Event Organizers**: [Your contact email]
-- **Technical Support**: [Tech support email]
-- **Website Issues**: Please create an issue in this repository
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Data Science Club organizing committee
-- All speakers and mentors participating in the event
-- Contributors and community members
-- [Any third-party resources, libraries, or inspirations]
-
----
-
-**Built with ❤️ by the Data Science Club Team**
-
-For more information about the Data Science Club, visit [your club website/social media]
