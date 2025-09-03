@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Club Summit 2025</title>
+    <meta name="description" content="Join the premier data science event of 2025. Connect with industry leaders, learn cutting-edge techniques, and advance your career in data science.">
+    <meta name="keywords" content="data science, summit, 2025, AI, machine learning, analytics">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Data Science Club Summit 2025">
+    <meta property="og:description" content="Join the premier data science event of 2025">
+    <meta property="og:type" content="website">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Custom CSS Variables - Data Science Theme */
+        :root {
+            --background: 222 84% 5%;
+            --foreground: 210 40% 98%;
+            --card: 222 84% 7%;
+            --card-foreground: 210 40% 98%;
+            --card-hover: 222 84% 9%;
+            --primary: 205 100% 65%;
+            --primary-foreground: 222 84% 5%;
+            --primary-glow: 205 100% 80%;
+            --secondary: 270 95% 70%;
+            --secondary-foreground: 210 40% 98%;
+            --secondary-glow: 270 95% 85%;
+            --accent: 180 100% 60%;
+            --accent-foreground: 222 84% 5%;
+            --accent-glow: 180 100% 75%;
+            --muted: 217 32% 18%;
+            --muted-foreground: 215 20% 65%;
+            --popover: 222 84% 7%;
+            --popover-foreground: 210 40% 98%;
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 217 32% 20%;
+            --input: 217 32% 18%;
+            --ring: 205 100% 65%;
+            --gradient-primary: linear-gradient(135deg, hsl(205 100% 65%), hsl(270 95% 70%));
+            --gradient-secondary: linear-gradient(135deg, hsl(270 95% 70%), hsl(180 100% 60%));
+            --gradient-hero: linear-gradient(135deg, hsl(222 84% 5%), hsl(217 32% 18%));
+            --gradient-card: linear-gradient(135deg, hsl(222 84% 7%), hsl(217 32% 20%));
+            --shadow-glow: 0 0 30px hsl(205 100% 65% / 0.3);
+            --shadow-secondary-glow: 0 0 30px hsl(270 95% 70% / 0.3);
+            --shadow-accent-glow: 0 0 30px hsl(180 100% 60% / 0.3);
+            --shadow-card: 0 8px 32px hsl(222 84% 3% / 0.4);
+            --radius: 12px;
+            --navbar-height: 80px;
+        }
+
+        body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Custom Animations */
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slide-in {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 20px hsl(205 100% 65% / 0.3); }
+            50% { box-shadow: 0 0 40px hsl(205 100% 65% / 0.6); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes scale-in {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Utility Classes */
+        .animate-fade-in { animation: fade-in 0.6s ease-out; }
+        .animate-slide-in { animation: slide-in 0.6s ease-out; }
+        .animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-scale-in { animation: scale-in 0.5s ease-out; }
+
+        .card-glow {
+            background: var(--gradient-card);
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-card), var(--shadow-glow);
+        }
+
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-glow {
+            background: var(--gradient-primary);
+            box-shadow: var(--shadow-glow);
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: var(--radius);
+            padding: 12px 24px;
+            color: hsl(var(--primary-foreground));
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-glow:hover {
+            box-shadow: var(--shadow-glow), 0 0 50px hsl(205 100% 65% / 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid hsl(var(--primary));
+            color: hsl(var(--primary));
+            border-radius: var(--radius);
+            padding: 10px 22px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        /* Three.js Canvas */
+        #three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            height: var(--navbar-height);
+            background: hsl(var(--background) / 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: var(--navbar-height);
+            left: 0;
+            right: 0;
+            background: hsl(var(--background) / 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 40;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .desktop-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
+
+        @media (min-width: 769px) {
+            .desktop-menu { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* Form Styles */
+        .form-input {
+            background: hsl(var(--input));
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            color: hsl(var(--foreground));
+            width: 100%;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: hsl(var(--ring));
+            box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: hsl(120 60% 20%);
+            border: 1px solid hsl(120 60% 30%);
+            color: hsl(120 60% 90%);
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-top: 16px;
+        }
+
+        /* Animation Delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+            <div class="text-2xl font-bold text-gradient">DSC</div>
+            
+            <!-- Desktop Menu -->
+            <div class="desktop-menu items-center space-x-8">
+                <a href="#home" class="text-sm font-medium hover:text-primary transition-colors">Home</a>
+                <a href="#about" class="text-sm font-medium hover:text-primary transition-colors">About</a>
+                <a href="#speakers" class="text-sm font-medium hover:text-primary transition-colors">Speakers</a>
+                <a href="#schedule" class="text-sm font-medium hover:text-primary transition-colors">Schedule</a>
+                <a href="#register" class="text-sm font-medium hover:text-primary transition-colors">Register</a>
+                <a href="#venue" class="text-sm font-medium hover:text-primary transition-colors">Venue</a>
+                <button class="btn-outline" onclick="scrollToSection('register')">Register Now</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" class="h-6 w-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="px-4 py-6 space-y-4">
+            <a href="#home" class="block text-sm font-medium hover:text-primary transition-colors" onclick="closeMobileMenu()">Home</a>
+            <a href="#about" class="block text-sm font-medium hover:text-primary transition-colors" onclick="closeMobileMenu()">About</a>
+            <a href="#speakers" class="block text-sm font-medium hover:text-primary transition-colors" onclick="closeMobileMenu()">Speakers</a>
+            <a href="#schedule" class="block text-sm font-medium hover:text-primary transition-colors" onclick="closeMobileMenu()">Schedule</a>
+            <a href="#register" class="block text-sm font-medium hover:text-primary transition-colors" onclick="closeMobileMenu()">Register</a>
+            <a href="#venue" class="block text-sm font-medium hover:text-primary transition-colors" onclick="closeMobileMenu()">Venue</a>
+            <button class="btn-glow w-full mt-4" onclick="scrollToSection('register'); closeMobileMenu();">Register Now</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <canvas id="three-canvas"></canvas>
+            
+            <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+                <h1 class="text-4xl md:text-7xl font-bold text-gradient mb-6 animate-fade-in">
+                    Data Science Club Summit 2025
+                </h1>
+                <p class="text-xl md:text-2xl text-muted-foreground mb-8 animate-fade-in delay-200">
+                    Unlock the Future of Data Intelligence
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in delay-400">
+                    <button class="btn-glow text-lg px-8 py-4" onclick="scrollToSection('register')">
+                        Register Now
+                    </button>
+                    <button class="btn-outline text-lg px-8 py-4" onclick="scrollToSection('about')">
+                        Learn More
+                    </button>
+                </div>
+                
+                <!-- Countdown Timer -->
+                <div id="countdown" class="flex justify-center items-center space-x-4 md:space-x-8 mt-8 animate-fade-in delay-800">
+                    <div class="text-center animate-scale-in delay-900">
+                        <div class="card-glow rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[90px] animate-glow-pulse">
+                            <div id="days" class="text-2xl md:text-4xl font-bold text-gradient mb-1">00</div>
+                            <div class="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Days</div>
+                        </div>
+                    </div>
+                    <div class="text-center animate-scale-in delay-1000">
+                        <div class="card-glow rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[90px] animate-glow-pulse">
+                            <div id="hours" class="text-2xl md:text-4xl font-bold text-gradient mb-1">00</div>
+                            <div class="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Hours</div>
+                        </div>
+                    </div>
+                    <div class="text-center animate-scale-in delay-1100">
+                        <div class="card-glow rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[90px] animate-glow-pulse">
+                            <div id="minutes" class="text-2xl md:text-4xl font-bold text-gradient mb-1">00</div>
+                            <div class="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Minutes</div>
+                        </div>
+                    </div>
+                    <div class="text-center animate-scale-in delay-1200">
+                        <div class="card-glow rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[90px] animate-glow-pulse">
+                            <div id="seconds" class="text-2xl md:text-4xl font-bold text-gradient mb-1">00</div>
+                            <div class="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gradient-to-b from-background to-muted/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">About the Summit</h2>
+                    <p class="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                        The Data Science Club Summit 2025 is the premier event for data enthusiasts, professionals, 
+                        and students. Join us for an immersive experience that combines cutting-edge research, 
+                        practical applications, and meaningful connections in the world of data science.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="group scroll-animate delay-100">
+                        <div class="card-glow card-hover p-8 text-center h-full">
+                            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-primary shadow-glow mx-auto">
+                                <i data-lucide="brain" class="h-8 w-8 text-primary-foreground"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                                Cutting-Edge Knowledge
+                            </h3>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Learn the latest in AI, ML, and data science from industry leaders and researchers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group scroll-animate delay-200">
+                        <div class="card-glow card-hover p-8 text-center h-full">
+                            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-primary shadow-glow mx-auto">
+                                <i data-lucide="users" class="h-8 w-8 text-primary-foreground"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                                Networking Opportunities
+                            </h3>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Connect with like-minded professionals, students, and experts in the data science community.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group scroll-animate delay-300">
+                        <div class="card-glow card-hover p-8 text-center h-full">
+                            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-primary shadow-glow mx-auto">
+                                <i data-lucide="trophy" class="h-8 w-8 text-primary-foreground"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                                Hands-On Workshops
+                            </h3>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Participate in interactive sessions and practical workshops to enhance your skills.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group scroll-animate delay-400">
+                        <div class="card-glow card-hover p-8 text-center h-full">
+                            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-primary shadow-glow mx-auto">
+                                <i data-lucide="target" class="h-8 w-8 text-primary-foreground"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
+                                Career Growth
+                            </h3>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Discover new career paths and opportunities in the rapidly evolving data science field.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center scroll-animate delay-500">
+                    <div class="card-glow p-8 max-w-4xl mx-auto">
+                        <h3 class="text-2xl font-bold text-gradient mb-4">Why Attend?</h3>
+                        <p class="text-lg text-muted-foreground leading-relaxed">
+                            Whether you're a seasoned data scientist, a curious student, or someone looking to transition 
+                            into the field, this summit offers something for everyone. From keynote presentations by 
+                            industry titans to intimate workshop sessions, you'll leave with actionable insights, 
+                            valuable connections, and the inspiration to push the boundaries of what's possible with data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speakers Section -->
+        <section id="speakers" class="py-20 bg-gradient-to-b from-muted/10 to-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Featured Speakers</h2>
+                    <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        Learn from industry leaders and pioneering researchers who are shaping the future of data science
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="speaker-card card-glow card-hover p-8 text-center scroll-animate delay-100">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-primary flex items-center justify-center text-6xl font-bold text-primary-foreground">
+                            DS
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground mb-2">Dr. Sarah Chen</h3>
+                        <p class="text-primary mb-4 font-medium">Chief Data Scientist, TechCorp</p>
+                        <p class="text-muted-foreground text-sm leading-relaxed">
+                            Pioneer in machine learning algorithms with 15+ years of experience in AI research and implementation.
+                        </p>
+                    </div>
+
+                    <div class="speaker-card card-glow card-hover p-8 text-center scroll-animate delay-200">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-secondary flex items-center justify-center text-6xl font-bold text-secondary-foreground">
+                            MJ
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground mb-2">Michael Johnson</h3>
+                        <p class="text-secondary mb-4 font-medium">VP of Analytics, DataFlow Inc</p>
+                        <p class="text-muted-foreground text-sm leading-relaxed">
+                            Expert in big data architecture and real-time analytics systems serving millions of users daily.
+                        </p>
+                    </div>
+
+                    <div class="speaker-card card-glow card-hover p-8 text-center scroll-animate delay-300">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-primary flex items-center justify-center text-6xl font-bold text-primary-foreground">
+                            AP
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground mb-2">Prof. Aisha Patel</h3>
+                        <p class="text-accent mb-4 font-medium">AI Researcher, MIT</p>
+                        <p class="text-muted-foreground text-sm leading-relaxed">
+                            Leading researcher in natural language processing and computational linguistics with 50+ publications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="py-20 bg-gradient-to-b from-background to-muted/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Event Schedule</h2>
+                    <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        A full day of insights, workshops, and networking opportunities
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <div class="schedule-item card-glow p-6 scroll-animate delay-100">
+                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                            <div class="md:w-24 text-primary font-bold text-lg">09:00</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-foreground mb-2">Registration & Welcome Coffee</h3>
+                                <p class="text-muted-foreground">Network with fellow attendees and grab some refreshments</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item card-glow p-6 scroll-animate delay-200">
+                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                            <div class="md:w-24 text-primary font-bold text-lg">10:00</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-foreground mb-2">Keynote: The Future of AI</h3>
+                                <p class="text-muted-foreground">Dr. Sarah Chen - Exploring the next frontier in artificial intelligence</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item card-glow p-6 scroll-animate delay-300">
+                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                            <div class="md:w-24 text-primary font-bold text-lg">11:30</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-foreground mb-2">Workshop: Hands-on Machine Learning</h3>
+                                <p class="text-muted-foreground">Interactive session on building and deploying ML models</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item card-glow p-6 scroll-animate delay-400">
+                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                            <div class="md:w-24 text-primary font-bold text-lg">13:00</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-foreground mb-2">Lunch & Networking</h3>
+                                <p class="text-muted-foreground">Connect with speakers and fellow data enthusiasts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item card-glow p-6 scroll-animate delay-500">
+                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                            <div class="md:w-24 text-primary font-bold text-lg">14:30</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-foreground mb-2">Panel: Industry Trends</h3>
+                                <p class="text-muted-foreground">Discussion on current trends and future predictions in data science</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item card-glow p-6 scroll-animate delay-600">
+                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                            <div class="md:w-24 text-primary font-bold text-lg">16:00</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-foreground mb-2">Closing & Awards</h3>
+                                <p class="text-muted-foreground">Wrap-up session and recognition of outstanding contributions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="register" class="py-20 bg-gradient-to-b from-muted/10 to-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Register Now</h2>
+                    <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        Secure your spot at the premier data science event of 2025
+                    </p>
+                </div>
+
+                <div class="max-w-2xl mx-auto">
+                    <div class="card-glow p-8 scroll-animate delay-200">
+                        <form id="registrationForm" onsubmit="handleRegistration(event)">
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-foreground mb-2">Full Name</label>
+                                    <input type="text" id="name" name="name" required class="form-input" placeholder="Enter your full name">
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-foreground mb-2">Email Address</label>
+                                    <input type="email" id="email" name="email" required class="form-input" placeholder="Enter your email">
+                                </div>
+
+                                <div>
+                                    <label for="organization" class="block text-sm font-medium text-foreground mb-2">College/Company</label>
+                                    <input type="text" id="organization" name="organization" required class="form-input" placeholder="Enter your organization">
+                                </div>
+
+                                <div>
+                                    <label for="experience" class="block text-sm font-medium text-foreground mb-2">Experience Level</label>
+                                    <select id="experience" name="experience" required class="form-input">
+                                        <option value="">Select your level</option>
+                                        <option value="beginner">Beginner</option>
+                                        <option value="intermediate">Intermediate</option>
+                                        <option value="advanced">Advanced</option>
+                                        <option value="expert">Expert</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn-glow w-full text-lg py-4">
+                                    Register for Summit 2025
+                                </button>
+                            </div>
+                        </form>
+
+                        <div id="successMessage" class="success-message" style="display: none;">
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="h-5 w-5 mr-2"></i>
+                                Registration successful! We'll send you confirmation details via email.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Venue Section -->
+        <section id="venue" class="py-20 bg-gradient-to-b from-background to-muted/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Event Venue</h2>
+                    <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        Join us at the prestigious Data Science Convention Center
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-animate delay-100">
+                        <div class="card-glow p-8">
+                            <h3 class="text-2xl font-bold text-gradient mb-6">Location Details</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-4">
+                                    <i data-lucide="map-pin" class="h-6 w-6 text-primary mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-foreground">Address</h4>
+                                        <p class="text-muted-foreground">123 Innovation Drive<br>Tech City, TC 12345</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <i data-lucide="calendar" class="h-6 w-6 text-primary mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-foreground">Date & Time</h4>
+                                        <p class="text-muted-foreground">April 15, 2025<br>9:00 AM - 6:00 PM</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <i data-lucide="car" class="h-6 w-6 text-primary mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-foreground">Parking</h4>
+                                        <p class="text-muted-foreground">Free parking available<br>500+ spaces</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 space-y-4">
+                                <h4 class="font-semibold text-foreground">Contact Information</h4>
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="mail" class="h-5 w-5 text-primary"></i>
+                                    <span class="text-muted-foreground">summit@datascienceclub.com</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="phone" class="h-5 w-5 text-primary"></i>
+                                    <span class="text-muted-foreground">+1 (555) 123-4567</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scroll-animate delay-200">
+                        <div class="card-glow p-2 h-96">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2412648718435!2d-73.98731368459391!3d40.74844097932847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1647880671731!5m2!1sen!2sus"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; border-radius: var(--radius);" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-gradient-to-t from-muted/20 to-background border-t border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="scroll-animate delay-100">
+                    <h3 class="text-2xl font-bold text-gradient mb-4">Data Science Club</h3>
+                    <p class="text-muted-foreground mb-6">
+                        Connecting data enthusiasts and fostering innovation in the field of data science.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="h-6 w-6"></i>
+                        </a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
+                            <i data-lucide="twitter" class="h-6 w-6"></i>
+                        </a>
+                        <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
+                            <i data-lucide="github" class="h-6 w-6"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scroll-animate delay-200">
+                    <h4 class="font-semibold text-foreground mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-muted-foreground hover:text-primary transition-colors">About</a></li>
+                        <li><a href="#speakers" class="text-muted-foreground hover:text-primary transition-colors">Speakers</a></li>
+                        <li><a href="#schedule" class="text-muted-foreground hover:text-primary transition-colors">Schedule</a></li>
+                        <li><a href="#register" class="text-muted-foreground hover:text-primary transition-colors">Register</a></li>
+                    </ul>
+                </div>
+
+                <div class="scroll-animate delay-300">
+                    <h4 class="font-semibold text-foreground mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Past Events</a></li>
+                        <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Community</a></li>
+                        <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Newsletter</a></li>
+                    </ul>
+                </div>
+
+                <div class="scroll-animate delay-400">
+                    <h4 class="font-semibold text-foreground mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="text-muted-foreground">summit@datascienceclub.com</li>
+                        <li class="text-muted-foreground">+1 (555) 123-4567</li>
+                        <li class="text-muted-foreground">123 Innovation Drive<br>Tech City, TC 12345</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-border mt-12 pt-8 text-center scroll-animate delay-500">
+                <p class="text-muted-foreground">
+                    © 2025 Data Science Club. All rights reserved. Built with passion for data science.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Three.js Background Animation
+        let scene, camera, renderer, particles, particlePositions, particleVelocities;
+
+        function initThreeJS() {
+            const canvas = document.getElementById('three-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            // Create particles
+            const particleCount = 150;
+            const geometry = new THREE.BufferGeometry();
+            particlePositions = new Float32Array(particleCount * 3);
+            particleVelocities = [];
+
+            for (let i = 0; i < particleCount; i++) {
+                particlePositions[i * 3] = (Math.random() - 0.5) * 20;
+                particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+                particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+
+                particleVelocities.push({
+                    x: (Math.random() - 0.5) * 0.02,
+                    y: (Math.random() - 0.5) * 0.02,
+                    z: (Math.random() - 0.5) * 0.02
+                });
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+            const material = new THREE.PointsMaterial({
+                color: 0x00bfff,
+                size: 2,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            // Create connections between particles
+            const lineGeometry = new THREE.BufferGeometry();
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x00bfff,
+                transparent: true,
+                opacity: 0.1
+            });
+
+            camera.position.z = 10;
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Update particle positions
+            for (let i = 0; i < particleVelocities.length; i++) {
+                particlePositions[i * 3] += particleVelocities[i].x;
+                particlePositions[i * 3 + 1] += particleVelocities[i].y;
+                particlePositions[i * 3 + 2] += particleVelocities[i].z;
+
+                // Wrap around screen
+                if (particlePositions[i * 3] > 10) particlePositions[i * 3] = -10;
+                if (particlePositions[i * 3] < -10) particlePositions[i * 3] = 10;
+                if (particlePositions[i * 3 + 1] > 10) particlePositions[i * 3 + 1] = -10;
+                if (particlePositions[i * 3 + 1] < -10) particlePositions[i * 3 + 1] = 10;
+                if (particlePositions[i * 3 + 2] > 10) particlePositions[i * 3 + 2] = -10;
+                if (particlePositions[i * 3 + 2] < -10) particlePositions[i * 3 + 2] = 10;
+            }
+
+            particles.geometry.attributes.position.needsUpdate = true;
+            particles.rotation.y += 0.001;
+
+            renderer.render(scene, camera);
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date('2025-04-15T09:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+        }
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('active');
+        }
+
+        // Smooth Scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const navbarHeight = 80;
+            const elementPosition = element.offsetTop - navbarHeight;
+            
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Registration Form Handler
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('registrationForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Simple form validation
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const organization = formData.get('organization');
+            const experience = formData.get('experience');
+            
+            if (name && email && organization && experience) {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Reinitialize Lucide icons for the success message
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 100);
+            }
+        }
+
+        // Scroll Animations
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Handle smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+                closeMobileMenu();
+            });
+        });
+
+        // Window Resize Handler
+        function handleResize() {
+            if (renderer && camera) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initThreeJS();
+            observeElements();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            window.addEventListener('resize', handleResize);
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const menu = document.getElementById('mobileMenu');
+                const menuBtn = document.querySelector('.mobile-menu-btn');
+                
+                if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
